@@ -8,7 +8,5 @@ if (len_params < 1):
     print("none")
 else:
     for param in params:
-        if (param.endswith("ism")):
-            print(param)
-        else:
+        if (not param.endswith("ism")):
             print(param + "ism")
