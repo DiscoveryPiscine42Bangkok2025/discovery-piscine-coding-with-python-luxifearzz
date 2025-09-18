@@ -15,16 +15,19 @@ def is_inrange(pos, board_size):
     return (0 <= pos[0] < board_size) and (0 <= pos[1] < board_size)
 
 
-def is_checkable(board, board_size, piece, from_pos):
+def is_checkable(board, board_size, VALID_PIECES, piece, from_pos):
+    if (piece not in VALID_PIECES):
+        return False
+
     # Pawn : move "up left" and "up right"
     if (piece == 'P'):
         # up left
         tmp_pos = (from_pos[0]-1, from_pos[1]-1)
-        if is_inrange(tmp_pos, board_size) and (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+        if is_inrange(tmp_pos, board_size) and (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
             return True
         # up right
         tmp_pos = (from_pos[0]-1, from_pos[1]+1)
-        if is_inrange(tmp_pos, board_size) and (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+        if is_inrange(tmp_pos, board_size) and (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
             return True
         return False
 
@@ -37,9 +40,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q1):
                 tmp_pos = (from_pos[0]-step, from_pos[1]-step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q1 = False
                 else:
                     q1 = False
@@ -47,9 +50,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q2):
                 tmp_pos = (from_pos[0]-step, from_pos[1]+step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q2 = False
                 else:
                     q2 = False
@@ -57,9 +60,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q3):
                 tmp_pos = (from_pos[0]+step, from_pos[1]-step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q3 = False
                 else:
                     q3 = False
@@ -67,9 +70,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q4):
                 tmp_pos = (from_pos[0]+step, from_pos[1]+step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q4 = False
                 else:
                     q4 = False
@@ -85,9 +88,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q1):
                 tmp_pos = (from_pos[0]-step, from_pos[1])
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q1 = False
                 else:
                     q1 = False
@@ -95,9 +98,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q2):
                 tmp_pos = (from_pos[0], from_pos[1]+step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q2 = False
                 else:
                     q2 = False
@@ -105,9 +108,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q3):
                 tmp_pos = (from_pos[0]+step, from_pos[1])
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q3 = False
                 else:
                     q3 = False
@@ -115,9 +118,9 @@ def is_checkable(board, board_size, piece, from_pos):
             if (q4):
                 tmp_pos = (from_pos[0], from_pos[1]-step)
                 if is_inrange(tmp_pos, board_size):
-                    if (board[tmp_pos[0]][tmp_pos[1]] == 'K'):
+                    if (board[tmp_pos[0]][tmp_pos[1]].upper() == 'K'):
                         return True
-                    if (board[tmp_pos[0]][tmp_pos[1]] != '.'):
+                    if (board[tmp_pos[0]][tmp_pos[1]] in VALID_PIECES):
                         q4 = False
                 else:
                     q4 = False
@@ -127,12 +130,13 @@ def is_checkable(board, board_size, piece, from_pos):
     # Queen  : move in straight lines (horizontal and vertical) and diagonally
     if (piece == 'Q'):
         # So, moves like a combination of a bishop and a rook
-        return is_checkable(board, board_size, 'B', from_pos) or is_checkable(board, board_size, 'R', from_pos)
+        return is_checkable(board, board_size, VALID_PIECES, 'B', from_pos) or is_checkable(board, board_size, VALID_PIECES, 'R', from_pos)
 
     return False
 
 
 def checkmate(board_str):
+    VALID_PIECES = ['K', 'Q', 'B', 'R', 'P']
     board = create_board_from_string(board_str)
     board_size = len(board)
 
@@ -144,8 +148,8 @@ def checkmate(board_str):
     for i in range(board_size):
         for j in range(board_size):
             this_piece = board[i][j]
-            if (this_piece != '.' and this_piece != 'K'):
-                if (is_checkable(board, board_size, this_piece.upper(), (i, j))):
+            if (this_piece.upper() in VALID_PIECES and this_piece != 'K'):
+                if (is_checkable(board, board_size, VALID_PIECES, this_piece.upper(), (i, j))):
                     print("Success")
                     # return True
                     return "Success"
