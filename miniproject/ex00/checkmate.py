@@ -1,9 +1,9 @@
+# string -> 2d array
 def create_board_from_string(board_str):
     return [line.strip() for line in board_str.strip().splitlines()]
 
+
 # make sure the board is square
-
-
 def validate_board_size(board, board_size):
     for row in board:
         if len(row) != board_size:
