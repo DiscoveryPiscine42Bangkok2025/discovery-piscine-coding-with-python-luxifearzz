@@ -129,6 +129,8 @@ def is_checkable(board, board_size, piece, from_pos):
         # So, moves like a combination of a bishop and a rook
         return is_checkable(board, board_size, 'B', from_pos) or is_checkable(board, board_size, 'R', from_pos)
 
+    return False
+
 
 def checkmate(board_str):
     board = create_board_from_string(board_str)
@@ -143,7 +145,7 @@ def checkmate(board_str):
         for j in range(board_size):
             this_piece = board[i][j]
             if (this_piece != '.' and this_piece != 'K'):
-                if (is_checkable(board, board_size, this_piece, (i, j))):
+                if (is_checkable(board, board_size, this_piece.upper(), (i, j))):
                     print("Success")
                     # return True
                     return "Success"
