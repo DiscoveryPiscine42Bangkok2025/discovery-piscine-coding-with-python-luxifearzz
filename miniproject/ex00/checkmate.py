@@ -1,6 +1,15 @@
 def create_board_from_string(board_str):
     return [line.strip() for line in board_str.strip().splitlines()]
 
+# make sure the board is square
+
+
+def validate_board_size(board, board_size):
+    for row in board:
+        if len(row) != board_size:
+            return False
+    return True
+
 
 def is_inrange(pos, board_size):
     return (0 <= pos[0] < board_size) and (0 <= pos[1] < board_size)
@@ -125,13 +134,19 @@ def checkmate(board_str):
     board = create_board_from_string(board_str)
     board_size = len(board)
 
+    if not validate_board_size(board, board_size):
+        print("Something went wrong: Board is not square.")
+        # return False
+        return "Something went wrong: Board is not square."
+
     for i in range(board_size):
         for j in range(board_size):
             this_piece = board[i][j]
             if (this_piece != '.' and this_piece != 'K'):
                 if (is_checkable(board, board_size, this_piece, (i, j))):
-                    # return True
                     print("Success")
-                    return
-    # return False
+                    # return True
+                    return "Success"
     print("Fail")
+    # return False
+    return "Fail"
